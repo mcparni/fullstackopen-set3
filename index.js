@@ -16,6 +16,7 @@ const logFormat = ':method :url :resp :status :res[content-length] - :response-t
 app.use(morgan(logFormat))
 
 app.use(bodyParser.json())
+app.use(express.static('build'))
 
 let persons = [
   {
