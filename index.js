@@ -1,6 +1,16 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
+
+
+// Tehtävä 3.7
+// app.use(morgan('tiny'))
+
+// Tehtävä 3.8.
+morgan.token('resp', function (req, res) {return JSON.stringify(req.body) })
+const logFormat = ':method :url :resp :status :res[content-length] - :response-time ms'
+app.use(morgan(logFormat))
 
 app.use(bodyParser.json())
 
