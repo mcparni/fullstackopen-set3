@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const cors = require('cors')
+
+app.use(cors())
 
 
 // Tehtävä 3.7
@@ -37,8 +40,6 @@ let persons = [
   },
 ]
 
-const PORT = 3001
-
 const nameExists = (name) => {
   const person = persons.find(person => person.name === name)
   if ( person ) {
@@ -53,9 +54,6 @@ const generateId = () => {
   return Number(id.toFixed(0))
 }
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
 
 app.get('/api/persons/:id', (request, response) => {
   const id = Number(request.params.id)
@@ -107,4 +105,9 @@ app.post('/api/persons', (request, response) => {
 
   persons = persons.concat(person)
   response.json(person)
+})
+
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
