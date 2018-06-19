@@ -12,8 +12,8 @@ const personSchema = new Schema({
   name: {
     type : String,
     unique : true
-  }, 
-  number: String, 
+  },
+  number: String,
   id: String
 })
 personSchema.statics.format = function(person) {
@@ -22,7 +22,7 @@ personSchema.statics.format = function(person) {
     number: person.number,
     id: person._id
   }
-};
+}
 
 const Person = mongoose.model('Person', personSchema)
 
